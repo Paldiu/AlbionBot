@@ -15,7 +15,7 @@ public class Bot extends BotBase {
     protected static JDA jda;
 
     public static void main(String[] args) {
-        builder = JDABuilder.createDefault("Nzg3MDc0MzQ2NDI1OTA5Mjc4.X9PqGw.nTlIvfZgvNeuIH_oxGRTTzJS2Z8");
+        builder = JDABuilder.createDefault("BOT TOKEN HERE");
         try {
             jda = builder.build();
         } catch (LoginException ex) {
