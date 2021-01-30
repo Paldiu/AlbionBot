@@ -1,0 +1,37 @@
+plugins {
+    id "java"
+    id "maven-publish"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+repositories {
+    mavenCentral() // http://repo.maven.apache.org/maven2
+    jcenter() // https://jcenter.bintray.com
+    mavenLocal()
+}
+
+dependencies {
+    implementation "net.dv8tion:JDA:4.2.0_222"
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+}
+
+shadowJar {
+    archiveClassifier.set("") // no -all at the end of the jar
+    relocate "net.dv8tion", "io.github.paldiu.libs.jda"
+    relocate "ch.qos.logback", "io.github.paldiu.libs.logback"
+}
+
+group = "io.github.paldiu"
+version = "1.0"
+sourceCompatibility = "8"
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+// add shading to the default build task
+tasks.build.dependsOn tasks.shadowJar
